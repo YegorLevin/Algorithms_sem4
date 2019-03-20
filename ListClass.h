@@ -24,9 +24,15 @@ public:
 
 	ostream& operator<< (ostream& output_stream)// output operator overloading
 	{
-		cout << data;
+		/*for (int counter = 0; counter < size; counter++)
+			cout << at(counter);*/
+
+		for(Node * current = head; current != nullptr; current = current->next)// move through the entire list
+		{
+			cout << current->data << endl;
+		}
 		return output_stream;
-	}	
+	}
 
 	class Node
 	{
@@ -100,7 +106,7 @@ void ListClass<T>::push_front(T newData)
 		head = new Node(newData); // create the first node in the list
 		tail = head; // set the tail pointer to this node
 	}
-	else 
+	else
 	{
 		head = new Node(newData, head); // add a new node that next node is the head and set on it the pointer on the beginning of the list
 		head->next->prev = head;
@@ -114,7 +120,7 @@ void ListClass<T>::pop_back()
 {
 	if (isEmpty()) // if the list is empty
 	{
-		throw logic_error("The list is empty"); 
+		throw logic_error("The list is empty");
 	}
 
 	if (size == 1) // if the list consists of only one node
@@ -140,7 +146,7 @@ void ListClass<T>::pop_front()
 {
 	if (isEmpty()) // if the list is empty
 	{
-		throw logic_error("The list is empty"); 
+		throw logic_error("The list is empty");
 	}
 	if (size == 1) // if the list consists of only one node
 	{
@@ -224,10 +230,10 @@ void ListClass<T>::remove(size_t index)
 			{
 				current->next->prev = current->prev;
 			}
-			
-			
+
+
 			delete current; // delete node
-			
+
 		}
 		size--; // decrease size
 	}
@@ -271,7 +277,7 @@ T ListClass<T>::at(size_t index)
 	else
 	{
 		size_t counter = 0; // counter
-		Node * current = head; 
+		Node * current = head;
 		while (counter != index) // move to the required node 
 		{
 			current = current->next; // moving
